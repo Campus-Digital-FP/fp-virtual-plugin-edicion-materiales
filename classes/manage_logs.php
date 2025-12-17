@@ -100,7 +100,14 @@ class manage_logs {
      */
     public function get_numprocessedwarnign(): int {
         global $DB;
-        return $DB->count_records('local_educa_processedcourses', ['message' => 'no_associated_folder']);
+
+        $sql = "SELECT COUNT(1)
+          FROM {local_educa_processedcourses}
+          WHERE " . $DB->sql_compare_text('message') . " = " . $DB->sql_compare_text(':msg');
+
+        $params = ['msg' => 'no_associated_folder'];
+
+        return $DB->count_records_sql($sql, $params);
     }
 
     /**
