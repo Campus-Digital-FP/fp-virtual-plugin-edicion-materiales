@@ -577,6 +577,10 @@ define([
                                     // eslint-disable-next-line max-nested-callbacks
                                     announce: true}).done(function(htmlsuccess) {
                                     $(REGIONS.CONTENT_CONTROLS).prepend(htmlsuccess);
+                                    let notices = $(REGIONS.CONTENT_CONTROLS).find('.alert-dismissible');
+                                    if (notices.length > 2) {
+                                        notices.slice(2).remove();
+                                    }
                                 });
                                 hasChanges = false;
                                 $(REGIONS.NEWNODE).removeAttr('class');
@@ -588,7 +592,7 @@ define([
                                             autocreate: true,
                                             update: function(evt) {
                                                 hasChanges = true;
-                                                $('.haschanges').css('display', 'block');
+                                                $(REGIONS.HASCHANGES).css('display', 'block');
                                             }
                                         });
                                     });
@@ -598,6 +602,10 @@ define([
                                     closebutton: true,
                                     announce: true}).done(function(htmlerror) {
                                     $(REGIONS.CONTENT_CONTROLS).prepend(htmlerror);
+                                    let notices = $(REGIONS.CONTENT_CONTROLS).find('.alert-dismissible');
+                                    if (notices.length > 2) {
+                                        notices.slice(2).remove();
+                                    }
                                 });
                             }
                             $(REGIONS.OVERLAY).remove();
@@ -635,7 +643,7 @@ define([
             $(REGIONS.DRAGGING).append(htmlLi);
         }
         hasChanges = true;
-        $('.haschanges').css('display', 'block');
+        $(REGIONS.HASCHANGES).css('display', 'block');
         $(REGIONS.NEWNODEEDIT).off('touchstart.dragaware mousedown.dragaware click');
         $(REGIONS.NEWNODEDELETE).off('touchstart.dragaware mousedown.dragaware click');
         $(REGIONS.NEWNODECONTENTEDITABLE).off('keydown');

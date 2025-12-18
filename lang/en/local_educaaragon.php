@@ -187,3 +187,4 @@ $string['delete_node'] = 'Delete node';
 $string['delete_node_desc'] = 'The selected node, and all its nested nodes, will be deleted. Are you sure you want to delete it?';
 $string['addnewnode'] = 'Add new item';
 $string['more_info'] = 'More information on the interface';
+$string['content_here'] = '"Here is its content"';

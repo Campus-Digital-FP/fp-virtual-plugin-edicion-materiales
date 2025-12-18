@@ -97,14 +97,18 @@ define([
         this.changeVersion();
         $(document).on('change', ACTION.CHANGEVERSION, this.changeVersion);
         this.createModalChanges();
-        document.querySelector(REGION.CONTENT_ATTO_HTML).addEventListener('input', function() {
-            hasChanges = true;
-            $(REGION.HASCHANGES).css('display', 'block');
-        });
-        $('.editor_atto_toolbar [type="button"]:not(.atto_collapse_button)').on('click', function(){
-            hasChanges = true;
-            $(REGION.HASCHANGES).css('display', 'block');
-        });
+        setTimeout(function() {
+            if (document.querySelector(REGION.CONTENT_ATTO_HTML) !== null) {
+                document.querySelector(REGION.CONTENT_ATTO_HTML).addEventListener('input', function() {
+                    hasChanges = true;
+                    $(REGION.HASCHANGES).css('display', 'block');
+                });
+                $('.editor_atto_toolbar [type="button"]:not(.atto_collapse_button)').on('click', function(){
+                    hasChanges = true;
+                    $(REGION.HASCHANGES).css('display', 'block');
+                });
+            }
+        }, 500);
         document.querySelectorAll(
             'a:not([target="_blank"]), .content-controls button:not([data-action="save-changes"])'
         ).forEach(link => {
@@ -330,6 +334,10 @@ define([
                                     // eslint-disable-next-line max-nested-callbacks
                                     announce: true}).done(function(htmlsuccess) {
                                     $(REGION.CONTENT_CONTROLS).prepend(htmlsuccess);
+                                    let notices = $(REGION.CONTENT_CONTROLS).find('.alert-dismissible');
+                                    if (notices.length > 2) {
+                                        notices.slice(2).remove();
+                                    }
                                 });
                                 hasChanges = false;
                                 $(REGION.HASCHANGES).css('display', 'none');
@@ -339,6 +347,10 @@ define([
                                     // eslint-disable-next-line max-nested-callbacks
                                     announce: true}).done(function(htmlerror) {
                                     $(REGION.CONTENT_CONTROLS).prepend(htmlerror);
+                                    let notices = $(REGION.CONTENT_CONTROLS).find('.alert-dismissible');
+                                    if (notices.length > 2) {
+                                        notices.slice(2).remove();
+                                    }
                                 });
                             }
                             $(REGION.OVERLAY).remove();
@@ -407,6 +419,10 @@ define([
                                         // eslint-disable-next-line max-nested-callbacks
                                         announce: true}).done(function(htmlsuccess) {
                                         $(REGION.CONTENT_CONTROLS).prepend(htmlsuccess);
+                                        let notices = $(REGION.CONTENT_CONTROLS).find('.alert-dismissible');
+                                        if (notices.length > 2) {
+                                            notices.slice(2).remove();
+                                        }
                                     });
                                 } else {
                                     Templates.render(TEMPLATES.ERROR, {message: langStrings[4],
@@ -414,6 +430,10 @@ define([
                                         // eslint-disable-next-line max-nested-callbacks
                                         announce: true}).done(function(htmlerror) {
                                         $(REGION.CONTENT_CONTROLS).prepend(htmlerror);
+                                        let notices = $(REGION.CONTENT_CONTROLS).find('.alert-dismissible');
+                                        if (notices.length > 2) {
+                                            notices.slice(2).remove();
+                                        }
                                     });
                                 }
                                 if (response.responseprintable === true) {
@@ -422,6 +442,10 @@ define([
                                         // eslint-disable-next-line max-nested-callbacks
                                         announce: true}).done(function(htmlsuccess) {
                                         $(REGION.CONTENT_CONTROLS).prepend(htmlsuccess);
+                                        let notices = $(REGION.CONTENT_CONTROLS).find('.alert-dismissible');
+                                        if (notices.length > 2) {
+                                            notices.slice(2).remove();
+                                        }
                                     });
                                 } else {
                                     Templates.render(TEMPLATES.ERROR, {message: langStrings[6],
@@ -429,6 +453,10 @@ define([
                                         // eslint-disable-next-line max-nested-callbacks
                                         announce: true}).done(function(htmlerror) {
                                         $(REGION.CONTENT_CONTROLS).prepend(htmlerror);
+                                        let notices = $(REGION.CONTENT_CONTROLS).find('.alert-dismissible');
+                                        if (notices.length > 2) {
+                                            notices.slice(2).remove();
+                                        }
                                     });
                                 }
                                 $(REGION.OVERLAY).remove();
@@ -510,6 +538,10 @@ define([
                                         // eslint-disable-next-line max-nested-callbacks
                                         announce: true}).done(function(htmlsuccess) {
                                         $(REGION.CONTENT_CONTROLS).prepend(htmlsuccess);
+                                        let notices = $(REGION.CONTENT_CONTROLS).find('.alert-dismissible');
+                                        if (notices.length > 2) {
+                                            notices.slice(2).remove();
+                                        }
                                         let resourceid = $(e.currentTarget).attr('data-resourceid');
                                         if ($(ACTION.VIEWVERSIONLINKS).length > 0) {
                                             let href = $(ACTION.VIEWVERSIONLINKS).attr('data-href');
@@ -534,6 +566,10 @@ define([
                                         // eslint-disable-next-line max-nested-callbacks
                                         announce: true}).done(function(htmlerror) {
                                         $(REGION.CONTENT_CONTROLS).prepend(htmlerror);
+                                        let notices = $(REGION.CONTENT_CONTROLS).find('.alert-dismissible');
+                                        if (notices.length > 2) {
+                                            notices.slice(2).remove();
+                                        }
                                     });
                                 }
                                 $(REGION.OVERLAY).remove();

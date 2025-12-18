@@ -70,7 +70,7 @@ class createversion_external extends external_api {
      * @throws moodle_exception
      */
     public static function createversion(int $courseid, int $resourceid, string $versionname, string $asofversion): array {
-        global $DB, $PAGE;
+        global $DB;
         self::validate_parameters(
             self::createversion_parameters(),
             [
@@ -86,11 +86,6 @@ class createversion_external extends external_api {
         }
         $cmrecord = $DB->get_record('course_modules', ['course' => $courseid, 'instance' => $resourceid], 'id');
         $cminfo = get_fast_modinfo($courseid)->get_cm($cmrecord->id);
-        
-        // Set page context to avoid coding_exception
-        $PAGE->set_context(\context_course::instance($courseid));
-        $PAGE->set_url('/local/educaaragon/index.php');
-        
         $manageeditable = new manage_editable_resource($cminfo);
         return [
             'response' => $manageeditable->create_version($versionname, $asofversion),

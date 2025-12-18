@@ -187,3 +187,4 @@ $string['delete_node'] = 'Eliminar nodo';
 $string['delete_node_desc'] = 'Se eliminará el nodo seleccionado, y todos sus nodos anidados. ¿Estás seguro de eliminarlo?';
 $string['addnewnode'] = 'Añadir nuevo elemento';
 $string['more_info'] = 'Más información sobre la interfaz';
+$string['content_here'] = '"Aquí su contenido"';
